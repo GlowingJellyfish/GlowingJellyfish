@@ -214,7 +214,7 @@ class TestInteractive(metaclass=OrderedClassMembers):
         self.stockfish.clear_output()
 
     def test_startup_output(self):
-        self.stockfish.starts_with("Stockfish")
+        self.stockfish.starts_with("GlowingJellyfish")
 
     def test_uci_command(self):
         self.stockfish.send_command("uci")
@@ -426,7 +426,7 @@ class TestSyzygy(metaclass=OrderedClassMembers):
         self.stockfish.clear_output()
 
     def test_syzygy_setup(self):
-        self.stockfish.starts_with("Stockfish")
+        self.stockfish.starts_with("GlowingJellyfish")
         self.stockfish.send_command("uci")
         self.stockfish.send_command(
             f"setoption name SyzygyPath value {os.path.join(PATH, 'syzygy')}"
@@ -565,7 +565,7 @@ class TestEnPassantSanitization(metaclass=OrderedClassMembers):
         self.stockfish.expect("bestmove d8d7*")
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Run Stockfish with testing options")
+    parser = argparse.ArgumentParser(description="Run GlowingJellyfish with testing options")
     parser.add_argument("--valgrind", action="store_true", help="Run valgrind testing")
     parser.add_argument(
         "--valgrind-thread", action="store_true", help="Run valgrind-thread testing"
@@ -582,7 +582,7 @@ def parse_args():
     parser.add_argument(
         "--none", action="store_true", help="Run without any testing options"
     )
-    parser.add_argument("stockfish_path", type=str, help="Path to Stockfish binary")
+    parser.add_argument("stockfish_path", type=str, help="Path to GlowingJellyfish binary")
 
     return parser.parse_args()
 
