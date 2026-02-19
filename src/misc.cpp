@@ -35,7 +35,7 @@
 
 #include "types.h"
 
-namespace GlowingJellyfish {
+namespace Stockfish {
 
 namespace {
 
