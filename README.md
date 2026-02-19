@@ -126,36 +126,34 @@ GlowingJellyfish uses neural networks trained on [data provided by the Leela Che
 project][lc0-data-link], which is made available under the [Open Database License][odbl-link] (ODbL).
 
 
-[authors-link]:       https://github.com/official-glowingjellyfish/GlowingJellyfish/blob/master/AUTHORS
-[build-link]:         https://github.com/official-glowingjellyfish/GlowingJellyfish/actions/workflows/glowingjellyfish.yml
-[commits-link]:       https://github.com/official-glowingjellyfish/GlowingJellyfish/commits/master
-[discord-link]:       https://discord.gg/GWDRS3kU6R
-[issue-link]:         https://github.com/official-glowingjellyfish/GlowingJellyfish/issues/new?assignees=&labels=&template=BUG-REPORT.yml
-[discussions-link]:   https://github.com/official-glowingjellyfish/GlowingJellyfish/discussions/new
+[authors-link]:       https://github.com/glowingjellyfish/GlowingJellyfish/blob/master/AUTHORS
+[build-link]:         https://github.com/glowingjellyfish/GlowingJellyfish/actions/workflows/glowingjellyfish.yml
+[commits-link]:       https://github.com/glowingjellyfish/GlowingJellyfish/commits/master
+[discord-link]:       https://discord.gg/TcNsmMU3tX
+[issue-link]:         https://github.com/glowingjellyfish/GlowingJellyfish/issues/new?assignees=&labels=&template=BUG-REPORT.yml
+[discussions-link]:   https://github.com/glowingjellyfish/GlowingJellyfish/discussions/new
 [fishtest-link]:      https://tests.glowingjellyfishchess.org/tests
-[guideline-link]:     https://github.com/official-glowingjellyfish/fishtest/wiki/Creating-my-first-test
-[license-link]:       https://github.com/official-glowingjellyfish/GlowingJellyfish/blob/master/Copying.txt
-[programming-link]:   https://www.chessprogramming.org/Main_Page
-[programmingsf-link]: https://www.chessprogramming.org/GlowingJellyfish
-[readme-link]:        https://github.com/official-glowingjellyfish/GlowingJellyfish/blob/master/README.md
-[release-link]:       https://github.com/official-glowingjellyfish/GlowingJellyfish/releases/latest
-[src-link]:           https://github.com/official-glowingjellyfish/GlowingJellyfish/tree/master/src
+[guideline-link]:     https://github.com/glowingjellyfish/fishtest/wiki/Creating-my-first-test
+[license-link]:       https://github.com/glowingjellyfish/GlowingJellyfish/blob/master/Copying.txt
+[readme-link]:        https://github.com/glowingjellyfish/GlowingJellyfish/blob/master/README.md
+[release-link]:       https://github.com/glowingjellyfish/GlowingJellyfish/releases/latest
+[src-link]:           https://github.com/glowingjellyfish/GlowingJellyfish/tree/master/src
 [glowingjellyfish128-logo]:  https://glowingjellyfishchess.org/images/logo/icon_128x128.png
 [uci-link]:           https://backscattering.de/chess/uci/
 [website-link]:       https://glowingjellyfishchess.org
 [website-blog-link]:  https://glowingjellyfishchess.org/blog/
-[wiki-link]:          https://github.com/official-glowingjellyfish/GlowingJellyfish/wiki
-[wiki-compile-link]:  https://github.com/official-glowingjellyfish/GlowingJellyfish/wiki/Compiling-from-source
-[wiki-uci-link]:      https://github.com/official-glowingjellyfish/GlowingJellyfish/wiki/UCI-&-Commands
-[wiki-usage-link]:    https://github.com/official-glowingjellyfish/GlowingJellyfish/wiki/Download-and-usage
-[worker-link]:        https://github.com/official-glowingjellyfish/fishtest/wiki/Running-the-worker
+[wiki-link]:          https://github.com/glowingjellyfish/GlowingJellyfish/wiki
+[wiki-compile-link]:  https://github.com/glowingjellyfish/GlowingJellyfish/wiki/Compiling-from-source
+[wiki-uci-link]:      https://github.com/glowingjellyfish/GlowingJellyfish/wiki/UCI-&-Commands
+[wiki-usage-link]:    https://github.com/glowingjellyfish/GlowingJellyfish/wiki/Download-and-usage
+[worker-link]:        https://github.com/glowingjellyfish/fishtest/wiki/Running-the-worker
 [lc0-data-link]:      https://storage.lczero.org/files/training_data
 [odbl-link]:          https://opendatacommons.org/licenses/odbl/odbl-10.txt
 
-[build-badge]:        https://img.shields.io/github/actions/workflow/status/official-glowingjellyfish/GlowingJellyfish/glowingjellyfish.yml?branch=master&style=for-the-badge&label=glowingjellyfish&logo=github
-[commits-badge]:      https://img.shields.io/github/commits-since/official-glowingjellyfish/GlowingJellyfish/latest?style=for-the-badge
-[discord-badge]:      https://img.shields.io/discord/435943710472011776?style=for-the-badge&label=discord&logo=Discord
+[build-badge]:        https://img.shields.io/github/actions/workflow/status/glowingjellyfish/GlowingJellyfish/glowingjellyfish.yml?branch=master&style=for-the-badge&label=glowingjellyfish&logo=github
+[commits-badge]:      https://img.shields.io/github/commits-since/glowingjellyfish/GlowingJellyfish/latest?style=for-the-badge
+[discord-badge]:      https://img.shields.io/discord/1473545613739167764?style=for-the-badge&label=discord&logo=Discord
 [fishtest-badge]:     https://img.shields.io/website?style=for-the-badge&down_color=red&down_message=Offline&label=Fishtest&up_color=success&up_message=Online&url=https%3A%2F%2Ftests.glowingjellyfishchess.org%2Ftests%2Ffinished
-[license-badge]:      https://img.shields.io/github/license/official-glowingjellyfish/GlowingJellyfish?style=for-the-badge&label=license&color=success
-[release-badge]:      https://img.shields.io/github/v/release/official-glowingjellyfish/GlowingJellyfish?style=for-the-badge&label=official%20release
+[license-badge]:      https://img.shields.io/github/license/glowingjellyfish/GlowingJellyfish?style=for-the-badge&label=license&color=success
+[release-badge]:      https://img.shields.io/github/v/release/glowingjellyfish/GlowingJellyfish?style=for-the-badge&label=official%20release
 [website-badge]:      https://img.shields.io/website?style=for-the-badge&down_color=red&down_message=Offline&label=website&up_color=success&up_message=Online&url=https%3A%2F%2Fglowingjellyfishchess.org
