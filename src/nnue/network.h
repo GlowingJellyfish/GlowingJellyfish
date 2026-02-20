@@ -1,13 +1,13 @@
 /*
-  Stockfish, a UCI chess playing engine derived from Glaurung 2.1
-  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)
+  GlowingJellyfish, a UCI chess playing engine derived from Glaurung 2.1
+  Copyright (C) 2004-2026 The GlowingJellyfish developers (see AUTHORS file)
 
-  Stockfish is free software: you can redistribute it and/or modify
+  GlowingJellyfish is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Stockfish is distributed in the hope that it will be useful,
+  GlowingJellyfish is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
@@ -37,11 +37,11 @@
 #include "nnue_feature_transformer.h"
 #include "nnue_misc.h"
 
-namespace Stockfish {
+namespace GlowingJellyfish {
 class Position;
 }
 
-namespace Stockfish::Eval::NNUE {
+namespace GlowingJellyfish::Eval::NNUE {
 
 enum class EmbeddedNNUEType {
     BIG,
@@ -138,22 +138,22 @@ struct Networks {
 };
 
 
-}  // namespace Stockfish
+}  // namespace GlowingJellyfish
 
 template<typename ArchT, typename FeatureTransformerT>
-struct std::hash<Stockfish::Eval::NNUE::Network<ArchT, FeatureTransformerT>> {
+struct std::hash<GlowingJellyfish::Eval::NNUE::Network<ArchT, FeatureTransformerT>> {
     std::size_t operator()(
-      const Stockfish::Eval::NNUE::Network<ArchT, FeatureTransformerT>& network) const noexcept {
+      const GlowingJellyfish::Eval::NNUE::Network<ArchT, FeatureTransformerT>& network) const noexcept {
         return network.get_content_hash();
     }
 };
 
 template<>
-struct std::hash<Stockfish::Eval::NNUE::Networks> {
-    std::size_t operator()(const Stockfish::Eval::NNUE::Networks& networks) const noexcept {
+struct std::hash<GlowingJellyfish::Eval::NNUE::Networks> {
+    std::size_t operator()(const GlowingJellyfish::Eval::NNUE::Networks& networks) const noexcept {
         std::size_t h = 0;
-        Stockfish::hash_combine(h, networks.big);
-        Stockfish::hash_combine(h, networks.small);
+        GlowingJellyfish::hash_combine(h, networks.big);
+        GlowingJellyfish::hash_combine(h, networks.small);
         return h;
     }
 };
