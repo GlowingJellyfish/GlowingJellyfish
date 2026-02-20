@@ -207,7 +207,8 @@ class TestInteractive(metaclass=OrderedClassMembers):
 
     def afterAll(self):
         self.glowingjellyfish.quit()
-        assert self.glowingjellyfish.close() == 0
+        rc = self.glowingjellyfish.close()
+        assert rc == 0
 
     def afterEach(self):
         assert postfix_check(self.glowingjellyfish.get_output()) == True
