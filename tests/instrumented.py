@@ -483,7 +483,8 @@ class TestEnPassantSanitization(metaclass=OrderedClassMembers):
 
     def afterAll(self):
         self.glowingjellyfish.quit()
-        assert self.glowingjellyfish.close() == 0
+        close_result = self.glowingjellyfish.close()
+        assert close_result == 0
 
     def afterEach(self):
         assert postfix_check(self.glowingjellyfish.get_output()) == True
