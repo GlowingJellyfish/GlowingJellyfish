@@ -9,7 +9,7 @@ import fnmatch
 from testing import (
     EPD,
     TSAN,
-    Stockfish as Engine,
+    GlowingJellyfish as Engine,
     MiniTestFramework,
     OrderedClassMembers,
     Valgrind,
@@ -36,7 +36,7 @@ def get_threads():
 
 
 def get_path():
-    return os.path.abspath(os.path.join(CWD, args.stockfish_path))
+    return os.path.abspath(os.path.join(CWD, args.glowingjellyfish_path))
 
 
 def postfix_check(output):
@@ -63,7 +63,7 @@ def postfix_check(output):
     return True
 
 
-def Stockfish(*args, **kwargs):
+def GlowingJellyfish(*args, **kwargs):
     return Engine(get_prefix(), get_path(), *args, **kwargs)
 
 
@@ -75,111 +75,111 @@ class TestCLI(metaclass=OrderedClassMembers):
         pass
 
     def beforeEach(self):
-        self.stockfish = None
+        self.glowingjellyfish = None
 
     def afterEach(self):
-        assert postfix_check(self.stockfish.get_output()) == True
-        self.stockfish.clear_output()
+        assert postfix_check(self.glowingjellyfish.get_output()) == True
+        self.glowingjellyfish.clear_output()
 
     def test_eval(self):
-        self.stockfish = Stockfish("eval".split(" "), True)
-        assert self.stockfish.process.returncode == 0
+        self.glowingjellyfish = GlowingJellyfish("eval".split(" "), True)
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_go_nodes_1000(self):
-        self.stockfish = Stockfish("go nodes 1000".split(" "), True)
-        assert self.stockfish.process.returncode == 0
+        self.glowingjellyfish = GlowingJellyfish("go nodes 1000".split(" "), True)
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_go_depth_10(self):
-        self.stockfish = Stockfish("go depth 10".split(" "), True)
-        assert self.stockfish.process.returncode == 0
+        self.glowingjellyfish = GlowingJellyfish("go depth 10".split(" "), True)
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_go_perft_4(self):
-        self.stockfish = Stockfish("go perft 4".split(" "), True)
-        assert self.stockfish.process.returncode == 0
+        self.glowingjellyfish = GlowingJellyfish("go perft 4".split(" "), True)
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_go_movetime_1000(self):
-        self.stockfish = Stockfish("go movetime 1000".split(" "), True)
-        assert self.stockfish.process.returncode == 0
+        self.glowingjellyfish = GlowingJellyfish("go movetime 1000".split(" "), True)
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_go_wtime_8000_btime_8000_winc_500_binc_500(self):
-        self.stockfish = Stockfish(
+        self.glowingjellyfish = GlowingJellyfish(
             "go wtime 8000 btime 8000 winc 500 binc 500".split(" "),
             True,
         )
-        assert self.stockfish.process.returncode == 0
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_go_wtime_1000_btime_1000_winc_0_binc_0(self):
-        self.stockfish = Stockfish(
+        self.glowingjellyfish = GlowingJellyfish(
             "go wtime 1000 btime 1000 winc 0 binc 0".split(" "),
             True,
         )
-        assert self.stockfish.process.returncode == 0
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_go_wtime_1000_btime_1000_winc_0_binc_0_movestogo_5(self):
-        self.stockfish = Stockfish(
+        self.glowingjellyfish = GlowingJellyfish(
             "go wtime 1000 btime 1000 winc 0 binc 0 movestogo 5".split(" "),
             True,
         )
-        assert self.stockfish.process.returncode == 0
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_go_movetime_200(self):
-        self.stockfish = Stockfish("go movetime 200".split(" "), True)
-        assert self.stockfish.process.returncode == 0
+        self.glowingjellyfish = GlowingJellyfish("go movetime 200".split(" "), True)
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_go_nodes_20000_searchmoves_e2e4_d2d4(self):
-        self.stockfish = Stockfish(
+        self.glowingjellyfish = GlowingJellyfish(
             "go nodes 20000 searchmoves e2e4 d2d4".split(" "), True
         )
-        assert self.stockfish.process.returncode == 0
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_bench_128_threads_8_default_depth(self):
-        self.stockfish = Stockfish(
+        self.glowingjellyfish = GlowingJellyfish(
             f"bench 128 {get_threads()} 8 default depth".split(" "),
             True,
         )
-        assert self.stockfish.process.returncode == 0
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_bench_128_threads_3_bench_tmp_epd_depth(self):
-        self.stockfish = Stockfish(
+        self.glowingjellyfish = GlowingJellyfish(
             f"bench 128 {get_threads()} 3 {os.path.join(PATH, 'bench_tmp.epd')} depth".split(
                 " "
             ),
             True,
         )
-        assert self.stockfish.process.returncode == 0
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_d(self):
-        self.stockfish = Stockfish("d".split(" "), True)
-        assert self.stockfish.process.returncode == 0
+        self.glowingjellyfish = GlowingJellyfish("d".split(" "), True)
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_compiler(self):
-        self.stockfish = Stockfish("compiler".split(" "), True)
-        assert self.stockfish.process.returncode == 0
+        self.glowingjellyfish = GlowingJellyfish("compiler".split(" "), True)
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_license(self):
-        self.stockfish = Stockfish("license".split(" "), True)
-        assert self.stockfish.process.returncode == 0
+        self.glowingjellyfish = GlowingJellyfish("license".split(" "), True)
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_uci(self):
-        self.stockfish = Stockfish("uci".split(" "), True)
-        assert self.stockfish.process.returncode == 0
+        self.glowingjellyfish = GlowingJellyfish("uci".split(" "), True)
+        assert self.glowingjellyfish.process.returncode == 0
 
     def test_export_net_verify_nnue(self):
         current_path = os.path.abspath(os.getcwd())
-        self.stockfish = Stockfish(
+        self.glowingjellyfish = GlowingJellyfish(
             f"export_net {os.path.join(current_path, 'verify.nnue')}".split(" "), True
         )
-        assert self.stockfish.process.returncode == 0
+        assert self.glowingjellyfish.process.returncode == 0
 
     # verify the generated net equals the base net
 
     def test_network_equals_base(self):
-        self.stockfish = Stockfish(
+        self.glowingjellyfish = GlowingJellyfish(
             ["uci"],
             True,
         )
 
-        output = self.stockfish.process.stdout
+        output = self.glowingjellyfish.process.stdout
 
         # find line
         for line in output.split("\n"):
@@ -203,55 +203,55 @@ class TestCLI(metaclass=OrderedClassMembers):
 
 class TestInteractive(metaclass=OrderedClassMembers):
     def beforeAll(self):
-        self.stockfish = Stockfish()
+        self.glowingjellyfish = GlowingJellyfish()
 
     def afterAll(self):
-        self.stockfish.quit()
-        assert self.stockfish.close() == 0
+        self.glowingjellyfish.quit()
+        assert self.glowingjellyfish.close() == 0
 
     def afterEach(self):
-        assert postfix_check(self.stockfish.get_output()) == True
-        self.stockfish.clear_output()
+        assert postfix_check(self.glowingjellyfish.get_output()) == True
+        self.glowingjellyfish.clear_output()
 
     def test_startup_output(self):
-        self.stockfish.starts_with("Stockfish")
+        self.glowingjellyfish.starts_with("GlowingJellyfish")
 
     def test_uci_command(self):
-        self.stockfish.send_command("uci")
-        self.stockfish.equals("uciok")
+        self.glowingjellyfish.send_command("uci")
+        self.glowingjellyfish.equals("uciok")
 
     def test_set_threads_option(self):
-        self.stockfish.send_command(f"setoption name Threads value {get_threads()}")
+        self.glowingjellyfish.send_command(f"setoption name Threads value {get_threads()}")
 
     def test_ucinewgame_and_startpos_nodes_1000(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command("position startpos")
-        self.stockfish.send_command("go nodes 1000")
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command("position startpos")
+        self.glowingjellyfish.send_command("go nodes 1000")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_ucinewgame_and_startpos_moves(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command("position startpos moves e2e4 e7e6")
-        self.stockfish.send_command("go nodes 1000")
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command("position startpos moves e2e4 e7e6")
+        self.glowingjellyfish.send_command("go nodes 1000")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_fen_position_1(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command("position fen 5rk1/1K4p1/8/8/3B4/8/8/8 b - - 0 1")
-        self.stockfish.send_command("go nodes 1000")
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command("position fen 5rk1/1K4p1/8/8/3B4/8/8/8 b - - 0 1")
+        self.glowingjellyfish.send_command("go nodes 1000")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_fen_position_2_flip(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command("position fen 5rk1/1K4p1/8/8/3B4/8/8/8 b - - 0 1")
-        self.stockfish.send_command("flip")
-        self.stockfish.send_command("go nodes 1000")
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command("position fen 5rk1/1K4p1/8/8/3B4/8/8/8 b - - 0 1")
+        self.glowingjellyfish.send_command("flip")
+        self.glowingjellyfish.send_command("go nodes 1000")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_depth_5_with_callback(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command("position startpos")
-        self.stockfish.send_command("go depth 5")
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command("position startpos")
+        self.glowingjellyfish.send_command("go depth 5")
 
         def callback(output):
             regex = r"info depth \d+ seldepth \d+ multipv \d+ score cp -?\d+ nodes \d+ nps \d+ hashfull \d+ tbhits \d+ time \d+ pv"
@@ -261,13 +261,13 @@ class TestInteractive(metaclass=OrderedClassMembers):
                 return True
             return False
 
-        self.stockfish.check_output(callback)
+        self.glowingjellyfish.check_output(callback)
 
     def test_ucinewgame_and_go_depth_9(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command("setoption name UCI_ShowWDL value true")
-        self.stockfish.send_command("position startpos")
-        self.stockfish.send_command("go depth 9")
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command("setoption name UCI_ShowWDL value true")
+        self.glowingjellyfish.send_command("position startpos")
+        self.glowingjellyfish.send_command("go depth 9")
 
         depth = 1
 
@@ -287,285 +287,285 @@ class TestInteractive(metaclass=OrderedClassMembers):
 
             return False
 
-        self.stockfish.check_output(callback)
+        self.glowingjellyfish.check_output(callback)
 
     def test_clear_hash(self):
-        self.stockfish.send_command("setoption name Clear Hash")
+        self.glowingjellyfish.send_command("setoption name Clear Hash")
 
     def test_fen_position_mate_1(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command(
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command(
             "position fen 5K2/8/2qk4/2nPp3/3r4/6B1/B7/3R4 w - e6"
         )
-        self.stockfish.send_command("go depth 18")
+        self.glowingjellyfish.send_command("go depth 18")
 
-        self.stockfish.expect("* score mate 1 * pv d5e6")
-        self.stockfish.equals("bestmove d5e6")
+        self.glowingjellyfish.expect("* score mate 1 * pv d5e6")
+        self.glowingjellyfish.equals("bestmove d5e6")
 
     def test_fen_position_mate_minus_1(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command(
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command(
             "position fen 2brrb2/8/p7/Q7/1p1kpPp1/1P1pN1K1/3P4/8 b - -"
         )
-        self.stockfish.send_command("go depth 18")
-        self.stockfish.expect("* score mate -1 *")
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.send_command("go depth 18")
+        self.glowingjellyfish.expect("* score mate -1 *")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_fen_position_fixed_node(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command(
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command(
             "position fen 5K2/8/2P1P1Pk/6pP/3p2P1/1P6/3P4/8 w - - 0 1"
         )
-        self.stockfish.send_command("go nodes 500000")
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.send_command("go nodes 500000")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_fen_position_with_mate_go_depth(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command(
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command(
             "position fen 8/5R2/2K1P3/4k3/8/b1PPpp1B/5p2/8 w - -"
         )
-        self.stockfish.send_command("go depth 18 searchmoves c6d7")
-        self.stockfish.expect("* score mate 2 * pv c6d7 * f7f5")
+        self.glowingjellyfish.send_command("go depth 18 searchmoves c6d7")
+        self.glowingjellyfish.expect("* score mate 2 * pv c6d7 * f7f5")
 
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_fen_position_with_mate_go_mate(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command(
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command(
             "position fen 8/5R2/2K1P3/4k3/8/b1PPpp1B/5p2/8 w - -"
         )
-        self.stockfish.send_command("go mate 2 searchmoves c6d7")
-        self.stockfish.expect("* score mate 2 * pv c6d7 *")
+        self.glowingjellyfish.send_command("go mate 2 searchmoves c6d7")
+        self.glowingjellyfish.expect("* score mate 2 * pv c6d7 *")
 
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_fen_position_with_mate_go_nodes(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command(
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command(
             "position fen 8/5R2/2K1P3/4k3/8/b1PPpp1B/5p2/8 w - -"
         )
-        self.stockfish.send_command("go nodes 500000 searchmoves c6d7")
-        self.stockfish.expect("* score mate 2 * pv c6d7 * f7f5")
+        self.glowingjellyfish.send_command("go nodes 500000 searchmoves c6d7")
+        self.glowingjellyfish.expect("* score mate 2 * pv c6d7 * f7f5")
 
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_fen_position_depth_27(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command(
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command(
             "position fen r1b2r1k/pp1p2pp/2p5/2B1q3/8/8/P1PN2PP/R4RK1 w - - 0 18"
         )
-        self.stockfish.send_command("go")
-        self.stockfish.contains("score mate 1")
+        self.glowingjellyfish.send_command("go")
+        self.glowingjellyfish.contains("score mate 1")
 
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_fen_position_with_mate_go_depth_and_promotion(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command(
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command(
             "position fen 8/5R2/2K1P3/4k3/8/b1PPpp1B/5p2/8 w - - moves c6d7 f2f1q"
         )
-        self.stockfish.send_command("go depth 18")
-        self.stockfish.expect("* score mate 1 * pv f7f5")
-        self.stockfish.starts_with("bestmove f7f5")
+        self.glowingjellyfish.send_command("go depth 18")
+        self.glowingjellyfish.expect("* score mate 1 * pv f7f5")
+        self.glowingjellyfish.starts_with("bestmove f7f5")
 
     def test_fen_position_with_mate_go_depth_and_searchmoves(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command(
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command(
             "position fen 8/5R2/2K1P3/4k3/8/b1PPpp1B/5p2/8 w - -"
         )
-        self.stockfish.send_command("go depth 18 searchmoves c6d7")
-        self.stockfish.expect("* score mate 2 * pv c6d7 * f7f5")
+        self.glowingjellyfish.send_command("go depth 18 searchmoves c6d7")
+        self.glowingjellyfish.expect("* score mate 2 * pv c6d7 * f7f5")
 
-        self.stockfish.starts_with("bestmove c6d7")
+        self.glowingjellyfish.starts_with("bestmove c6d7")
 
     def test_fen_position_with_moves_with_mate_go_depth_and_searchmoves(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command(
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command(
             "position fen 8/5R2/2K1P3/4k3/8/b1PPpp1B/5p2/8 w - - moves c6d7"
         )
-        self.stockfish.send_command("go depth 18 searchmoves e3e2")
-        self.stockfish.expect("* score mate -1 * pv e3e2 f7f5")
-        self.stockfish.starts_with("bestmove e3e2")
+        self.glowingjellyfish.send_command("go depth 18 searchmoves e3e2")
+        self.glowingjellyfish.expect("* score mate -1 * pv e3e2 f7f5")
+        self.glowingjellyfish.starts_with("bestmove e3e2")
 
     def test_verify_nnue_network(self):
         current_path = os.path.abspath(os.getcwd())
-        Stockfish(
+        GlowingJellyfish(
             f"export_net {os.path.join(current_path, 'verify.nnue')}".split(" "), True
         )
 
-        self.stockfish.send_command("setoption name EvalFile value verify.nnue")
-        self.stockfish.send_command("position startpos")
-        self.stockfish.send_command("go depth 5")
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.send_command("setoption name EvalFile value verify.nnue")
+        self.glowingjellyfish.send_command("position startpos")
+        self.glowingjellyfish.send_command("go depth 5")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_multipv_setting(self):
-        self.stockfish.send_command("setoption name MultiPV value 4")
-        self.stockfish.send_command("position startpos")
-        self.stockfish.send_command("go depth 5")
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.send_command("setoption name MultiPV value 4")
+        self.glowingjellyfish.send_command("position startpos")
+        self.glowingjellyfish.send_command("go depth 5")
+        self.glowingjellyfish.starts_with("bestmove")
 
     def test_fen_position_with_skill_level(self):
-        self.stockfish.send_command("setoption name Skill Level value 10")
-        self.stockfish.send_command("position startpos")
-        self.stockfish.send_command("go depth 5")
-        self.stockfish.starts_with("bestmove")
+        self.glowingjellyfish.send_command("setoption name Skill Level value 10")
+        self.glowingjellyfish.send_command("position startpos")
+        self.glowingjellyfish.send_command("go depth 5")
+        self.glowingjellyfish.starts_with("bestmove")
 
-        self.stockfish.send_command("setoption name Skill Level value 20")
+        self.glowingjellyfish.send_command("setoption name Skill Level value 20")
 
 
 class TestSyzygy(metaclass=OrderedClassMembers):
     def beforeAll(self):
-        self.stockfish = Stockfish()
+        self.glowingjellyfish = GlowingJellyfish()
 
     def afterAll(self):
-        self.stockfish.quit()
-        assert self.stockfish.close() == 0
+        self.glowingjellyfish.quit()
+        assert self.glowingjellyfish.close() == 0
 
     def afterEach(self):
-        assert postfix_check(self.stockfish.get_output()) == True
-        self.stockfish.clear_output()
+        assert postfix_check(self.glowingjellyfish.get_output()) == True
+        self.glowingjellyfish.clear_output()
 
     def test_syzygy_setup(self):
-        self.stockfish.starts_with("Stockfish")
-        self.stockfish.send_command("uci")
-        self.stockfish.send_command(
+        self.glowingjellyfish.starts_with("GlowingJellyfish")
+        self.glowingjellyfish.send_command("uci")
+        self.glowingjellyfish.send_command(
             f"setoption name SyzygyPath value {os.path.join(PATH, 'syzygy')}"
         )
-        self.stockfish.expect(
+        self.glowingjellyfish.expect(
             "info string Found 35 WDL and 35 DTZ tablebase files (up to 4-man)."
         )
 
     def test_syzygy_bench(self):
-        self.stockfish.send_command("bench 128 1 8 default depth")
-        self.stockfish.expect("Nodes searched  :*")
+        self.glowingjellyfish.send_command("bench 128 1 8 default depth")
+        self.glowingjellyfish.expect("Nodes searched  :*")
 
     def test_syzygy_position(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command("position fen 4k3/PP6/8/8/8/8/8/4K3 w - - 0 1")
-        self.stockfish.send_command("go depth 5")
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command("position fen 4k3/PP6/8/8/8/8/8/4K3 w - - 0 1")
+        self.glowingjellyfish.send_command("go depth 5")
 
         def check_output(output):
             if "score cp 20000" in output or "score mate" in output:
                 return True
 
-        self.stockfish.check_output(check_output)
-        self.stockfish.expect("bestmove *")
+        self.glowingjellyfish.check_output(check_output)
+        self.glowingjellyfish.expect("bestmove *")
 
     def test_syzygy_position_2(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command("position fen 8/1P6/2B5/8/4K3/8/6k1/8 w - - 0 1")
-        self.stockfish.send_command("go depth 5")
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command("position fen 8/1P6/2B5/8/4K3/8/6k1/8 w - - 0 1")
+        self.glowingjellyfish.send_command("go depth 5")
 
         def check_output(output):
             if "score cp 20000" in output or "score mate" in output:
                 return True
 
-        self.stockfish.check_output(check_output)
-        self.stockfish.expect("bestmove *")
+        self.glowingjellyfish.check_output(check_output)
+        self.glowingjellyfish.expect("bestmove *")
 
     def test_syzygy_position_3(self):
-        self.stockfish.send_command("ucinewgame")
-        self.stockfish.send_command("position fen 8/1P6/2B5/8/4K3/8/6k1/8 b - - 0 1")
-        self.stockfish.send_command("go depth 5")
+        self.glowingjellyfish.send_command("ucinewgame")
+        self.glowingjellyfish.send_command("position fen 8/1P6/2B5/8/4K3/8/6k1/8 b - - 0 1")
+        self.glowingjellyfish.send_command("go depth 5")
 
         def check_output(output):
             if "score cp -20000" in output or "score mate -" in output:
                 return True
 
-        self.stockfish.check_output(check_output)
-        self.stockfish.expect("bestmove *")
+        self.glowingjellyfish.check_output(check_output)
+        self.glowingjellyfish.expect("bestmove *")
 
 class TestEnPassantSanitization(metaclass=OrderedClassMembers):
     def beforeAll(self):
-        self.stockfish = Stockfish()
+        self.glowingjellyfish = GlowingJellyfish()
 
     def afterAll(self):
-        self.stockfish.quit()
-        assert self.stockfish.close() == 0
+        self.glowingjellyfish.quit()
+        assert self.glowingjellyfish.close() == 0
 
     def afterEach(self):
-        assert postfix_check(self.stockfish.get_output()) == True
-        self.stockfish.clear_output()
+        assert postfix_check(self.glowingjellyfish.get_output()) == True
+        self.glowingjellyfish.clear_output()
 
     def test_position_1(self):
-        self.stockfish.send_command("position fen rnbqkbnr/ppp1p1pp/5p2/3pP3/8/8/PPPP1PPP/RNBQKBNR w kq d6 0 3")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen rnbqkbnr/ppp1p1pp/5p2/3pP3/8/8/PPPP1PPP/RNBQKBNR w kq d6 0 3")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*rnbqkbnr/ppp1p1pp/5p2/3pP3/8/8/PPPP1PPP/RNBQKBNR w kq d6 0 3*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*rnbqkbnr/ppp1p1pp/5p2/3pP3/8/8/PPPP1PPP/RNBQKBNR w kq d6 0 3*")
 
     def test_position_2(self):
-        self.stockfish.send_command("position fen k7/8/8/1pP5/2K5/8/8/8 w - b6 0 1")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen k7/8/8/1pP5/2K5/8/8/8 w - b6 0 1")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*k7/8/8/1pP5/2K5/8/8/8 w - b6 0 1*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*k7/8/8/1pP5/2K5/8/8/8 w - b6 0 1*")
 
     def test_position_3(self):
-        self.stockfish.send_command("position fen k1r5/8/8/1pP5/2K5/8/8/8 w - b6 0 1")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen k1r5/8/8/1pP5/2K5/8/8/8 w - b6 0 1")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*k1r5/8/8/1pP5/2K5/8/8/8 w - - 0 1*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*k1r5/8/8/1pP5/2K5/8/8/8 w - - 0 1*")
 
     def test_position_4(self):
-        self.stockfish.send_command("position fen k1r5/8/8/1pP5/8/2K5/8/8 w - b6 0 1")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen k1r5/8/8/1pP5/8/2K5/8/8 w - b6 0 1")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*k1r5/8/8/1pP5/8/2K5/8/8 w - - 0 1*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*k1r5/8/8/1pP5/8/2K5/8/8 w - - 0 1*")
 
     def test_position_5(self):
-        self.stockfish.send_command("position fen k1r5/8/8/PpP5/8/2K5/8/8 w - b6 0 1")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen k1r5/8/8/PpP5/8/2K5/8/8 w - b6 0 1")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*k1r5/8/8/PpP5/8/2K5/8/8 w - b6 0 1*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*k1r5/8/8/PpP5/8/2K5/8/8 w - b6 0 1*")
 
     def test_position_6(self):
-        self.stockfish.send_command("position fen k1r5/8/8/PpP5/2K5/8/8/8 w - b6 0 1")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen k1r5/8/8/PpP5/2K5/8/8/8 w - b6 0 1")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*k1r5/8/8/PpP5/2K5/8/8/8 w - b6 0 1*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*k1r5/8/8/PpP5/2K5/8/8/8 w - b6 0 1*")
 
     def test_position_7(self):
-        self.stockfish.send_command("position fen k7/4b3/8/PpP5/1K6/8/8/8 w - b6 0 1")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen k7/4b3/8/PpP5/1K6/8/8/8 w - b6 0 1")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*k7/4b3/8/PpP5/1K6/8/8/8 w - b6 0 1*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*k7/4b3/8/PpP5/1K6/8/8/8 w - b6 0 1*")
 
     def test_position_8(self):
-        self.stockfish.send_command("position fen k7/b5b1/8/2PpP3/3K4/8/8/8 w - d6 0 1")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen k7/b5b1/8/2PpP3/3K4/8/8/8 w - d6 0 1")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*k7/b5b1/8/2PpP3/3K4/8/8/8 w - - 0 1*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*k7/b5b1/8/2PpP3/3K4/8/8/8 w - - 0 1*")
 
     def test_position_9(self):
-        self.stockfish.send_command("position fen k7/8/8/r2pPK2/8/8/8/8 w - d6 0 1")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen k7/8/8/r2pPK2/8/8/8/8 w - d6 0 1")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*k7/8/8/r2pPK2/8/8/8/8 w - - 0 1*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*k7/8/8/r2pPK2/8/8/8/8 w - - 0 1*")
 
     def test_position_10(self):
-        self.stockfish.send_command("position fen k7/8/8/r1PpPK2/8/8/8/8 w - d6 0 1")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen k7/8/8/r1PpPK2/8/8/8/8 w - d6 0 1")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*k7/8/8/r1PpPK2/8/8/8/8 w - d6 0 1*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*k7/8/8/r1PpPK2/8/8/8/8 w - d6 0 1*")
 
     def test_position_11(self):
-        self.stockfish.send_command("position fen kb6/8/8/3pP3/5K2/8/8/8 w - d6 0 1")
-        self.stockfish.send_command("d")
+        self.glowingjellyfish.send_command("position fen kb6/8/8/3pP3/5K2/8/8/8 w - d6 0 1")
+        self.glowingjellyfish.send_command("d")
 
-        self.stockfish.expect_for_line_matching("Fen*", "*kb6/8/8/3pP3/5K2/8/8/8 w - d6 0 1*")
+        self.glowingjellyfish.expect_for_line_matching("Fen*", "*kb6/8/8/3pP3/5K2/8/8/8 w - d6 0 1*")
 
     def test_position_find_draw(self):
-        self.stockfish.send_command("position fen q4kb1/3Q2nq/8/r3PpK1/2n5/7q/8/q7 w - f6 0 1 moves d7c8 f8f7 c8d7 f7f8 d7d8 f8f7")
-        self.stockfish.send_command("go nodes 10000")
+        self.glowingjellyfish.send_command("position fen q4kb1/3Q2nq/8/r3PpK1/2n5/7q/8/q7 w - f6 0 1 moves d7c8 f8f7 c8d7 f7f8 d7d8 f8f7")
+        self.glowingjellyfish.send_command("go nodes 10000")
 
         def check_output(output):
             if fnmatch.fnmatch(output, "* score cp 0 * pv d8d7*"):
                 return True
         
-        self.stockfish.check_output(check_output)
-        self.stockfish.expect("bestmove d8d7*")
+        self.glowingjellyfish.check_output(check_output)
+        self.glowingjellyfish.expect("bestmove d8d7*")
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Run Stockfish with testing options")
+    parser = argparse.ArgumentParser(description="Run GlowingJellyfish with testing options")
     parser.add_argument("--valgrind", action="store_true", help="Run valgrind testing")
     parser.add_argument(
         "--valgrind-thread", action="store_true", help="Run valgrind-thread testing"
@@ -582,7 +582,7 @@ def parse_args():
     parser.add_argument(
         "--none", action="store_true", help="Run without any testing options"
     )
-    parser.add_argument("stockfish_path", type=str, help="Path to Stockfish binary")
+    parser.add_argument("glowingjellyfish_path", type=str, help="Path to GlowingJellyfish binary")
 
     return parser.parse_args()
 
