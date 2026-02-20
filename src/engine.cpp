@@ -1,13 +1,13 @@
 /*
-  Stockfish, a UCI chess playing engine derived from Glaurung 2.1
-  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)
+  GlowingJellyfish, a UCI chess playing engine derived from Glaurung 2.1
+  Copyright (C) 2004-2026 The GlowingJellyfish developers (see AUTHORS file)
 
-  Stockfish is free software: you can redistribute it and/or modify
+  GlowingJellyfish is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Stockfish is distributed in the hope that it will be useful,
+  GlowingJellyfish is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
@@ -44,7 +44,7 @@
 #include "uci.h"
 #include "ucioption.h"
 
-namespace Stockfish {
+namespace GlowingJellyfish {
 
 namespace NN = Eval::NNUE;
 
@@ -115,8 +115,8 @@ Engine::Engine(std::optional<std::string> path) :
     options.add("UCI_LimitStrength", Option(false));
 
     options.add("UCI_Elo",
-                Option(Stockfish::Search::Skill::LowestElo, Stockfish::Search::Skill::LowestElo,
-                       Stockfish::Search::Skill::HighestElo));
+                Option(GlowingJellyfish::Search::Skill::LowestElo, GlowingJellyfish::Search::Skill::LowestElo,
+                       GlowingJellyfish::Search::Skill::HighestElo));
 
     options.add("UCI_ShowWDL", Option(false));
 

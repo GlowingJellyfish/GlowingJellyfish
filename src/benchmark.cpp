@@ -1,13 +1,13 @@
 /*
-  Stockfish, a UCI chess playing engine derived from Glaurung 2.1
-  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)
+  GlowingJellyfish, a UCI chess playing engine derived from Glaurung 2.1
+  Copyright (C) 2004-2026 The GlowingJellyfish developers (see AUTHORS file)
 
-  Stockfish is free software: you can redistribute it and/or modify
+  GlowingJellyfish is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Stockfish is distributed in the hope that it will be useful,
+  GlowingJellyfish is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
@@ -98,7 +98,7 @@ const std::vector<std::string> Defaults = {
 
 // clang-format off
 // human-randomly picked 5 games with <60 moves from
-// https://tests.stockfishchess.org/tests/view/665c71f9fd45fb0f907c21e0
+// https://tests.glowingjellyfishchess.org/tests/view/665c71f9fd45fb0f907c21e0
 // only moves for one side
 const std::vector<std::vector<std::string>> BenchmarkPositions = {
     {
@@ -374,7 +374,7 @@ const std::vector<std::vector<std::string>> BenchmarkPositions = {
 
 }  // namespace
 
-namespace Stockfish::Benchmark {
+namespace GlowingJellyfish::Benchmark {
 
 // Builds a list of UCI commands to be run by bench. There
 // are five parameters: TT size in MB, number of search threads that
@@ -512,4 +512,4 @@ BenchmarkSetup setup_benchmark(std::istream& is) {
     return setup;
 }
 
-}  // namespace Stockfish
+}  // namespace GlowingJellyfish

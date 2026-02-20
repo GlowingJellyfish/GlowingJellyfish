@@ -7,6 +7,8 @@ jobs:
   Matetrack:
     name: Matetrack
     runs-on: ubuntu-22.04
+    env:
+      ENGINE_PATH: ${{ github.workspace }}/GlowingJellyfish/src/glowingjellyfish
     steps:
       - name: Checkout SF repo 
         uses: actions/checkout@v4
@@ -18,6 +20,9 @@ jobs:
       - name: build SF
         working-directory: GlowingJellyfish/src
         run: make -j profile-build
+
+      - name: Verify engine binary path
+        run: test -x "$ENGINE_PATH"
 
       - name: Checkout matetrack repo
         uses: actions/checkout@v4
@@ -50,27 +55,27 @@ jobs:
       - name: Run matetrack th1
         working-directory: matetrack
         run: |
-          python matecheck.py --syzygyPath 3-4-5-wdl/:3-4-5-dtz/ --engine /home/runner/work/GlowingJellyfish/GlowingJellyfish/GlowingJellyfish/src/GlowingJellyfish --epdFile mates2000.epd --nodes 100000 | tee matecheckout1.out
+          python matecheck.py --syzygyPath 3-4-5-wdl/:3-4-5-dtz/ --engine "$ENGINE_PATH" --epdFile mates2000.epd --nodes 100000 | tee matecheckout1.out
           ! grep "issues were detected" matecheckout1.out > /dev/null
 
       - name: Run matetrack th4
         working-directory: matetrack
         run: |
-          python matecheck.py --syzygyPath 3-4-5-wdl/:3-4-5-dtz/ --engine /home/runner/work/GlowingJellyfish/GlowingJellyfish/GlowingJellyfish/src/GlowingJellyfish --epdFile mates2000.epd --nodes 100000 --threads 4 | tee matecheckout4.out
+          python matecheck.py --syzygyPath 3-4-5-wdl/:3-4-5-dtz/ --engine "$ENGINE_PATH" --epdFile mates2000.epd --nodes 100000 --threads 4 | tee matecheckout4.out
           ! grep "issues were detected" matecheckout4.out > /dev/null
 
       - name: Run matetrack th1 with --syzygy50MoveRule false
         working-directory: matetrack
         run: |
           grep 5men cursed.epd > cursed5.epd
-          python matecheck.py --syzygyPath 3-4-5-wdl/:3-4-5-dtz/ --engine /home/runner/work/GlowingJellyfish/GlowingJellyfish/GlowingJellyfish/src/GlowingJellyfish --epdFile cursed5.epd --nodes 100000 --syzygy50MoveRule false | tee matecheckcursed1.out
+          python matecheck.py --syzygyPath 3-4-5-wdl/:3-4-5-dtz/ --engine "$ENGINE_PATH" --epdFile cursed5.epd --nodes 100000 --syzygy50MoveRule false | tee matecheckcursed1.out
           ! grep "issues were detected" matecheckcursed1.out > /dev/null
 
       - name: Run matetrack th4 with --syzygy50MoveRule false
         working-directory: matetrack
         run: |
           grep 5men cursed.epd > cursed5.epd
-          python matecheck.py --syzygyPath 3-4-5-wdl/:3-4-5-dtz/ --engine /home/runner/work/GlowingJellyfish/GlowingJellyfish/GlowingJellyfish/src/GlowingJellyfish --epdFile cursed5.epd --nodes 100000 --threads 4 --syzygy50MoveRule false | tee matecheckcursed4.out
+          python matecheck.py --syzygyPath 3-4-5-wdl/:3-4-5-dtz/ --engine "$ENGINE_PATH" --epdFile cursed5.epd --nodes 100000 --threads 4 --syzygy50MoveRule false | tee matecheckcursed4.out
           ! grep "issues were detected" matecheckcursed4.out > /dev/null
 
       - name: Verify mate and TB win count for matecheckcursed[14].out
