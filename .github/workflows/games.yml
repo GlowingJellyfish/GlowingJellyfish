@@ -7,6 +7,8 @@ jobs:
   Matetrack:
     name: Games
     runs-on: ubuntu-22.04
+    env:
+      ENGINE_PATH: ${{ github.workspace }}/GlowingJellyfish/src/glowingjellyfish
     steps:
       - name: Checkout SF repo 
         uses: actions/checkout@v4
@@ -18,6 +20,9 @@ jobs:
       - name: build debug enabled version of SF
         working-directory: GlowingJellyfish/src
         run: make -j build debug=yes
+
+      - name: Verify engine binary path
+        run: test -x "$ENGINE_PATH"
 
       - name: Checkout fastchess repo
         uses: actions/checkout@v4
@@ -35,8 +40,8 @@ jobs:
         working-directory: fastchess
         run: |
           ./fastchess -rounds 4 -games 2 -repeat -concurrency 4 -openings file=app/tests/data/openings.epd format=epd order=random -srand $RANDOM\
-               -engine name=sf1 cmd=/home/runner/work/GlowingJellyfish/GlowingJellyfish/GlowingJellyfish/src/GlowingJellyfish\
-               -engine name=sf2 cmd=/home/runner/work/GlowingJellyfish/GlowingJellyfish/GlowingJellyfish/src/GlowingJellyfish\
+               -engine name=sf1 cmd=$ENGINE_PATH\
+               -engine name=sf2 cmd=$ENGINE_PATH\
                -ratinginterval 1 -report penta=true -each proto=uci tc=4+0.04 -log file=fast.log | tee fast.out
           cat fast.log
           ! grep "Assertion" fast.log > /dev/null

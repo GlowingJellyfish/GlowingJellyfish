@@ -227,7 +227,7 @@ Hjax                                        22561          1566151
 gerbil                                      22435          1679842
 Serpensin                                   22396          1861156
 team-oh                                     22272          1636708
-mkstockfishtester                           22253          2029566
+mkglowingjellyfishtester                           22253          2029566
 Roady                                       22220          1465606
 tsim67                                      22077          1353048
 MazeOfGalious                               21978          1629593

@@ -1,13 +1,13 @@
 /*
-  Stockfish, a UCI chess playing engine derived from Glaurung 2.1
-  Copyright (C) 2004-2026 The Stockfish developers (see AUTHORS file)
+  GlowingJellyfish, a UCI chess playing engine derived from Glaurung 2.1
+  Copyright (C) 2004-2026 The GlowingJellyfish developers (see AUTHORS file)
 
-  Stockfish is free software: you can redistribute it and/or modify
+  GlowingJellyfish is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
   (at your option) any later version.
 
-  Stockfish is distributed in the hope that it will be useful,
+  GlowingJellyfish is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
@@ -35,12 +35,12 @@
 #include "numa.h"
 #include "position.h"
 #include "search.h"
-#include "syzygy/tbprobe.h"  // for Stockfish::Depth
+#include "syzygy/tbprobe.h"  // for GlowingJellyfish::Depth
 #include "thread.h"
 #include "tt.h"
 #include "ucioption.h"
 
-namespace Stockfish {
+namespace GlowingJellyfish {
 
 class Engine {
    public:
@@ -128,7 +128,7 @@ class Engine {
     std::map<NumaIndex, SharedHistories>  sharedHists;
 };
 
-}  // namespace Stockfish
+}  // namespace GlowingJellyfish
 
 
 #endif  // #ifndef ENGINE_H_INCLUDED
