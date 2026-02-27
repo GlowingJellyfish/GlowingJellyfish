@@ -447,6 +447,7 @@ class TestSyzygy(metaclass=OrderedClassMembers):
         def check_output(output):
             if "score cp 20000" in output or "score mate" in output:
                 return True
+            return False
 
         self.glowingjellyfish.check_output(check_output)
         self.glowingjellyfish.expect("bestmove *")
@@ -459,6 +460,7 @@ class TestSyzygy(metaclass=OrderedClassMembers):
         def check_output(output):
             if "score cp 20000" in output or "score mate" in output:
                 return True
+            return False
 
         self.glowingjellyfish.check_output(check_output)
         self.glowingjellyfish.expect("bestmove *")
@@ -471,6 +473,7 @@ class TestSyzygy(metaclass=OrderedClassMembers):
         def check_output(output):
             if "score cp -20000" in output or "score mate -" in output:
                 return True
+            return False
 
         self.glowingjellyfish.check_output(check_output)
         self.glowingjellyfish.expect("bestmove *")
